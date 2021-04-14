@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
+import firebase from 'firebase/app';
 
 const layout = {
     labelCol: {
@@ -11,18 +12,31 @@ const layout = {
 };
 
 const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 16,
-  },
+    wrapperCol: {
+        offset: 8,
+        span: 16,
+    },
 };
 
+
+// firebase.auth().signInWithEmailAndPassword(values.email, values.password)
 const Login = () => {
     const onFinish = (values) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
+        console.log('Success:', values);
+        firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
+            .then((userCredential) => {
+                // Signed in 
+                var user = userCredential.user;
+                console.log(user)
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.error(errorCode, errorMessage)
+            });
+    };
+    
+    const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
@@ -37,8 +51,8 @@ const Login = () => {
       onFinishFailed={onFinishFailed}
     >
       <Form.Item
-        label="Username"
-        name="username"
+        label="Email"
+        name="email"
         rules={[
           {
             required: true,
