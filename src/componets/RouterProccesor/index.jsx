@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import PrivateRoute from '../PrivateRoute';
 
 const RouterProccesor = (props) => {
     return (
@@ -9,13 +8,13 @@ const RouterProccesor = (props) => {
                 Object.values(props.routeMap)
                     .map(({component, childs, ...props}) => {
                         return (
-                            <PrivateRoute key={props.path} {...props}>
+                            <Route key={props.path} {...props}>
                                 {
                                     !!childs ? 
                                     <RouterProccesor routeMap={childs}/> : 
                                     component
                                 }
-                            </PrivateRoute>
+                            </Route>
                         )
                     })
             }

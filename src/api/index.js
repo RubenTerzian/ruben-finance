@@ -2,7 +2,7 @@ import axios from 'axios';
 import store from '../store';
 import { toast } from 'react-toastify';
 const api = axios.create({
-    baseURL: 'https://hipstagram-api.herokuapp.com',
+    baseURL: 'https://ruben-finance-default-rtdb.firebaseio.com/',
     headers: {
         'Content-Type': 'application/json',
         'Authorization': '',
