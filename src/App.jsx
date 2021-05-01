@@ -14,10 +14,11 @@ const App = () => {
   if (isLoading) return <h1>Loading...</h1>
   return (
     <>
-    <button onClick={() => dispatch({type: 'CHANGE_ROLE', payload: 'USER'})}>Loggout</button>
-    <Suspense fallback={<h1>Processing data...</h1>}>
-      {isAuth ? <Main/> : <Auth/>}
-    </Suspense>
+      {/* <button onClick={() => dispatch({type: "LOGGOUT"})}>Loggout</button> */}
+      <Suspense fallback={<h1>Processing data...</h1>}>
+        <Main/>
+        {/* <Auth/> */}
+      </Suspense>
     </>
   )
 }

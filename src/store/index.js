@@ -4,7 +4,6 @@ import {
     applyMiddleware
 } from 'redux';
 import thunk from 'redux-thunk';
-import { getCurrentUser } from '../api';
 import userReducer from './user/reducer';
 import uiReducer from './ui/reducer';
 import {initThunk} from './thunks';

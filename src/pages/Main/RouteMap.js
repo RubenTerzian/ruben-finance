@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import Users from './Users';
+import Categories from './Categories';
 
 const RouteMap = {
     dashboard: {
@@ -8,10 +8,10 @@ const RouteMap = {
         exact: true,
         component: <h1>Dashboard</h1>,
     },
-    users: {
-        path: '/users',
+    categories: {
+        path: '/categories',
         exact: true,
-        component: <Users/>,
+        component: <Categories/>,
         roles: ['ADMIN', 'MANAGER']
     },
     createUser: {
@@ -25,7 +25,7 @@ const RouteMap = {
     },
     default: {
         path: '*',
-        component: <Redirect to="/users"/>
+        component: <Redirect to="/categories"/>
     }
 }
 

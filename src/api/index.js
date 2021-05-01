@@ -1,19 +1,22 @@
 import axios from 'axios';
 import store from '../store';
 import { toast } from 'react-toastify';
+import firebase from 'firebase/app';
+
+
 const api = axios.create({
     baseURL: 'https://ruben-finance-default-rtdb.firebaseio.com/',
     headers: {
         'Content-Type': 'application/json',
         'Authorization': '',
     }
-})
+});
 
 api.interceptors.request.use(config => {
     config.headers['Authorization'] = store.getState().user.token;
     console.log(config)
     return config
-})
+});
 
 api.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
@@ -22,7 +25,7 @@ api.interceptors.response.use(function (response) {
   }, function (error) {
     toast.error(error.response.data,
         {
-            position: "top-right",
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -40,6 +43,17 @@ api.interceptors.response.use(function (response) {
   });
 
 export const getCurrentUser = () => {
-    return api.get('/users/current'); 
+    // let user = firebase.auth().currentUser;
+    // let name, email, photoUrl, uid, emailVerified;
+
+    // if (user != null) {
+    // name = user.displayName;
+    // email = user.email;
+    // photoUrl = user.photoURL;
+    // emailVerified = user.emailVerified;
+    // uid = user.uid;  
+    // console.log(name, email, photoUrl, emailVerified, uid);
+// }
+    return //user; 
 }
 
